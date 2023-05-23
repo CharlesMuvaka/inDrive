@@ -8,5 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="drive1">#FFA8E82F</color>
+    <color name="drive2">#D5F698</color>
     <color name="drive">#FF006400</color>
 </resources>
