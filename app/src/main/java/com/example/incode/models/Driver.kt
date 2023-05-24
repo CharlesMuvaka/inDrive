@@ -14,3 +14,14 @@ class Driver {
     }
 }
 
+class Car {
+    var name: String? = null
+    var numberPlate: String? = null
+
+    constructor()
+    constructor(name: String, plateNumber: String) {
+        this.name = name
+        this.numberPlate = plateNumber
+    }
+
+}
