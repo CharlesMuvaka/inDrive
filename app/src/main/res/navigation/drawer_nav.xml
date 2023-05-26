@@ -10,4 +10,14 @@
         android:name="com.example.incode.fragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/ridesFragment"
+        android:name="com.example.incode.fragments.RidesFragment"
+        android:label="fragment_rides"
+        tools:layout="@layout/fragment_rides" />
+    <fragment
+        android:id="@+id/driversFragment"
+        android:name="com.example.incode.fragments.DriversFragment"
+        android:label="fragment_drivers"
+        tools:layout="@layout/fragment_drivers" />
 </navigation>
