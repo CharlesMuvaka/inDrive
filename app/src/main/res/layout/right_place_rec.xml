@@ -3,18 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="2dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="12dp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@color/drive2">
 
         <ImageView
             android:id="@+id/image"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/download"
+            android:src="@drawable/hike"
+            android:scaleType="centerCrop"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
@@ -46,7 +51,8 @@
             android:layout_height="wrap_content"
             android:textAlignment="textStart"
             android:text="13 Street Moi Avenue"
-            android:textSize="15sp"
+            android:textSize="16sp"
+            android:fontFamily="@font/bubblegum_sans"
             android:textStyle="italic"
             android:textColor="@color/drive"
             app:layout_constraintEnd_toStartOf="@id/distance"
