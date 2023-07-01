@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.SplashFragment2">
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:src="@drawable/tourist"
+        android:src="@drawable/cabdriver"
         app:layout_constraintVertical_chainStyle="spread"
         app:layout_constraintBottom_toTopOf="@id/pageName"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,7 +19,7 @@
         android:id="@+id/pageName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Your Ideal travel Partner"
+        android:text="The driver you can trust"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textAlignment="center"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textColor="@color/black"
-        android:text="Don't be a stranded tourist.Enjoy most of our rides as you cruise through out the city. We have so much planned for you."
+        android:text="In a hurry to get to your destination, don't worry we got you.Enjoy most of our rides as you cruise through out the city. We have so much planned for you."
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@id/circle1"
         app:layout_constraintTop_toBottomOf="@id/pageName"
@@ -45,7 +45,7 @@
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:background="@drawable/background"
-        android:backgroundTint="@color/mainColor"
+        android:backgroundTint="@color/black"
         android:padding="8dp"
         android:layout_marginEnd="4dp"
         android:textAlignment="center"
@@ -59,8 +59,8 @@
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:background="@drawable/background"
-        android:backgroundTint="@color/grey"
         android:padding="8dp"
+        android:textColor="@color/mainColor"
         android:layout_marginEnd="4dp"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@id/circle1"
@@ -72,7 +72,7 @@
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:background="@drawable/background"
-        android:backgroundTint="@color/grey"
+        android:backgroundTint="@color/black"
         android:padding="8dp"
         android:textAlignment="center"
         app:layout_constraintTop_toTopOf="@id/circle2"
@@ -102,7 +102,6 @@
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:text="Next"
-        android:backgroundTint="@color/mainColor"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:textAlignment="center"
@@ -111,7 +110,6 @@
         android:background="@drawable/background"
         app:layout_constraintTop_toTopOf="@id/buttonSkip"
         app:layout_constraintEnd_toEndOf="parent"/>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
