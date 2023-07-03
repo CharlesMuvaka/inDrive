@@ -34,7 +34,7 @@ class SplashPagerFragment: Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if(v == bind.buttonSkip){
-            v.findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+            v.findNavController().navigate(R.id.action_splashPagerFragment_to_loginFragment)
         }
 
         if (v == bind.buttonNext){
