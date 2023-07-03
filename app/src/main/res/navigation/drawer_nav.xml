@@ -20,4 +20,8 @@
         android:name="com.example.incode.fragments.DriversFragment"
         android:label="fragment_drivers"
         tools:layout="@layout/fragment_drivers" />
+    <fragment
+        android:id="@+id/logout"
+        android:name="com.example.incode.fragments.Logout"
+        android:label="Logout" />
 </navigation>
