@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/evening_graph"
+    app:startDestination="@id/eveningFragmentOne">
+
+    <fragment
+        android:id="@+id/eveningFragmentOne"
+        android:name="com.example.incode.fragments.evening.EveningFragmentOne"
+        android:label="fragment_evening_one"
+        tools:layout="@layout/fragment_evening_one" >
+        <action
+            android:id="@+id/action_eveningFragmentOne_to_eveningFragmentThree"
+            app:destination="@id/eveningFragmentThree" />
+    </fragment>
+    <fragment
+        android:id="@+id/eveningFragmentTwo"
+        android:name="com.example.incode.fragments.evening.EveningFragmentTwo"
+        android:label="fragment_evening_two"
+        tools:layout="@layout/fragment_evening_two" >
+        <action
+            android:id="@+id/action_eveningFragmentTwo_to_eveningFragmentOne"
+            app:destination="@id/eveningFragmentOne" />
+    </fragment>
+    <fragment
+        android:id="@+id/eveningFragmentThree"
+        android:name="com.example.incode.fragments.evening.EveningFragmentThree"
+        android:label="fragment_evening_three"
+        tools:layout="@layout/fragment_evening_three" >
+        <action
+            android:id="@+id/action_eveningFragmentThree_to_eveningFragmentTwo"
+            app:destination="@id/eveningFragmentTwo" />
+    </fragment>
+</navigation>

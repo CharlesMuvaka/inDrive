@@ -29,18 +29,6 @@ class MainFragment: Fragment(), View.OnClickListener {
         val adp = PlacesAdapter()
         adp.asyncList.submitList(places)
 
-        bind.firstRec.apply {
-            adapter = adp
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            setHasFixedSize(true)
-        }
-
-        bind.secRec.apply {
-            adapter = adp
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            setHasFixedSize(true)
-        }
-
         //setting onclick listeners
         //bind.fab.setOnClickListener(this::onClick)
 

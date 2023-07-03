@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.incode.fragments.SplashFragment"
+        android:name="com.example.incode.fragments.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -30,7 +30,7 @@
         tools:layout="@layout/fragment_drawer" />
     <fragment
         android:id="@+id/splashPagerFragment"
-        android:name="com.example.incode.fragments.SplashPagerFragment"
+        android:name="com.example.incode.fragments.splash.SplashPagerFragment"
         android:label="SplashPagerFragment" >
         <action
             android:id="@+id/action_splashPagerFragment_to_loginFragment"
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/splashFragment2"
-        android:name="com.example.incode.fragments.SplashFragment2"
+        android:name="com.example.incode.fragments.splash.SplashFragment2"
         android:label="fragment_splash2"
         tools:layout="@layout/fragment_splash2" >
         <action

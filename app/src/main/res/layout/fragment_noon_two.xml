@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
     android:layout_width="match_parent"
-    tools:context=".fragments.PlaceFragment"
+    tools:context=".fragments.afternoon.NoonFragmentTwo"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">

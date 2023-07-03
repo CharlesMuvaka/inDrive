@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/breakfast_graph"
+    app:startDestination="@id/breakFragmentOne">
+
+    <fragment
+        android:id="@+id/breakFragmentOne"
+        android:name="com.example.incode.fragments.breakfast.BreakFragmentOne"
+        android:label="fragment_break_one"
+        tools:layout="@layout/fragment_break_one" >
+        <action
+            android:id="@+id/action_breakFragmentOne_to_breakFragmentThree"
+            app:destination="@id/breakFragmentThree" />
+    </fragment>
+    <fragment
+        android:id="@+id/breakFragmentTwo"
+        android:name="com.example.incode.fragments.breakfast.BreakFragmentTwo"
+        android:label="fragment_break_two"
+        tools:layout="@layout/fragment_break_two" >
+        <action
+            android:id="@+id/action_breakFragmentTwo_to_breakFragmentOne"
+            app:destination="@id/breakFragmentOne" />
+    </fragment>
+    <fragment
+        android:id="@+id/breakFragmentThree"
+        android:name="com.example.incode.fragments.breakfast.BreakFragmentThree"
+        android:label="fragment_break_three"
+        tools:layout="@layout/fragment_break_three" >
+        <action
+            android:id="@+id/action_breakFragmentThree_to_breakFragmentTwo"
+            app:destination="@id/breakFragmentTwo" />
+    </fragment>
+</navigation>

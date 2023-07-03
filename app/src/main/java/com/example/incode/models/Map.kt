@@ -13,7 +13,7 @@ class Legs{
     var duration = Duration()
     var endAddress = " "
     var startAddress = " "
-    var endLocation = Location()
+    //var endLocation = Location()
     var steps = ArrayList<Steps>()
 }
 
@@ -22,8 +22,8 @@ class Steps{
     var duration = Duration()
     var endAddress = " "
     var startAddress = " "
-    var endLocation = Location()
-    var startLocation = Location()
+    //var endLocation = Location()
+    //var startLocation = Location()
     var polyLine = PolyLine()
     var travelMode = " "
     var maneuver = ""
@@ -41,9 +41,4 @@ class Distance{
 
 class PolyLine{
     var points = ""
-}
-
-class Location{
-    var lat = ""
-    var lng = ""
 }

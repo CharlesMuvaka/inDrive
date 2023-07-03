@@ -1,4 +1,4 @@
-package com.example.incode.fragments
+package com.example.incode.fragments.splash
 
 import android.os.Bundle
 import android.os.Handler

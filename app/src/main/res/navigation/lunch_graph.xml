@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lunch_graph"
+    app:startDestination="@id/lunchFragmentOne">
+
+    <fragment
+        android:id="@+id/lunchFragmentOne"
+        android:name="com.example.incode.fragments.lunch.LunchFragmentOne"
+        android:label="fragment_lunch_one"
+        tools:layout="@layout/fragment_lunch_one" >
+        <action
+            android:id="@+id/action_lunchFragmentOne_to_lunchFragmentThree"
+            app:destination="@id/lunchFragmentThree" />
+    </fragment>
+    <fragment
+        android:id="@+id/lunchFragmentTwo"
+        android:name="com.example.incode.fragments.lunch.LunchFragmentTwo"
+        android:label="fragment_lunch_two"
+        tools:layout="@layout/fragment_lunch_two" >
+        <action
+            android:id="@+id/action_lunchFragmentTwo_to_lunchFragmentOne"
+            app:destination="@id/lunchFragmentOne" />
+    </fragment>
+    <fragment
+        android:id="@+id/lunchFragmentThree"
+        android:name="com.example.incode.fragments.lunch.LunchFragmentThree"
+        android:label="fragment_lunch_three"
+        tools:layout="@layout/fragment_lunch_three" >
+        <action
+            android:id="@+id/action_lunchFragmentThree_to_lunchFragmentTwo"
+            app:destination="@id/lunchFragmentTwo" />
+    </fragment>
+</navigation>
