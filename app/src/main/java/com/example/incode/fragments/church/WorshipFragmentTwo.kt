@@ -1,10 +1,13 @@
 package com.example.incode.fragments.church
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.NavHostFragment
 import com.example.incode.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -24,10 +27,9 @@ class WorshipFragmentTwo : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        Handler(Looper.getMainLooper()).postDelayed({
+            NavHostFragment.findNavController(this).navigate(R.id.action_worshipFragmentTwo_to_worshipFragmentThree)
+        }, 5000)
     }
 
     override fun onCreateView(
