@@ -8,9 +8,9 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface GetPlacesApi {
-    @GET
-    fun getPlace(
-        @Query("query")
+    @GET("place/textsearch/json?")
+    suspend fun getPlace(
+      @Query("query")
         searchType: String,
         @Query("query")
         placeFound: String,
