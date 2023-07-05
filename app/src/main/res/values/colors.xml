@@ -12,5 +12,5 @@
     <color name="drive2">#D5F698</color>
     <color name="drive">#FF006400</color>
     <color name="mainColor">#55BA47</color>
-    <color name="grey">#808080</color>
+    <color name="grey">#FF000000</color>
 </resources>
