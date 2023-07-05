@@ -34,17 +34,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/early"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:text="Be the early worm"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/cont1"
                 android:name="androidx.navigation.fragment.NavHostFragment"
@@ -52,20 +41,10 @@
                 android:layout_height="wrap_content"
                 app:defaultNavHost="true"
                 app:navGraph="@navigation/worship_graph"
-                app:layout_constraintTop_toBottomOf="@id/early"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <TextView
-                android:id="@+id/break_fast"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Break your fast"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cont1" />
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/cont2"
@@ -75,19 +54,8 @@
                 app:defaultNavHost="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/break_fast"
+                app:layout_constraintTop_toBottomOf="@id/cont1"
                 app:navGraph="@navigation/breakfast_graph" />
-
-            <TextView
-                android:id="@+id/mid_morning"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Have a mid morning blast"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cont2" />
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/cont3"
@@ -97,19 +65,9 @@
                 app:defaultNavHost="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/mid_morning"
+                app:layout_constraintTop_toBottomOf="@id/cont2"
                 app:navGraph="@navigation/mid_morning_graph" />
 
-            <TextView
-                android:id="@+id/lunch"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Hungry, we got you covered"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cont3" />
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/cont4"
@@ -119,19 +77,8 @@
                 app:defaultNavHost="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lunch"
+                app:layout_constraintTop_toBottomOf="@id/cont3"
                 app:navGraph="@navigation/lunch_graph" />
-
-            <TextView
-                android:id="@+id/afternoon"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Look, the sun is above your head"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cont4" />
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/cont5"
@@ -141,19 +88,9 @@
                 app:defaultNavHost="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/afternoon"
+                app:layout_constraintTop_toBottomOf="@id/cont4"
                 app:navGraph="@navigation/afternoon_graph" />
 
-            <TextView
-                android:id="@+id/evening"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Cap it up in style"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cont5" />
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/cont6"
@@ -163,7 +100,7 @@
                 app:defaultNavHost="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/evening"
+                app:layout_constraintTop_toBottomOf="@id/cont5"
                 app:navGraph="@navigation/evening_graph" />
 
 
