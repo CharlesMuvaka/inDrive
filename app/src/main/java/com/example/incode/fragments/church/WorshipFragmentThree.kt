@@ -9,23 +9,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
 import com.example.incode.R
+import com.example.incode.databinding.FragmentWorshipThreeBinding
 
 class WorshipFragmentThree : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    private lateinit var bind: FragmentWorshipThreeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        bind = FragmentWorshipThreeBinding.inflate(inflater)
+        val action = WorshipFragmentThreeDirections.actionWorshipFragmentThreeToWorshipFragmentOne()
         Handler(Looper.getMainLooper()).postDelayed({
-            NavHostFragment.findNavController(this).navigate(R.id.action_worshipFragmentThree_to_worshipFragmentOne)
+            NavHostFragment.findNavController(this).navigate(action)
         }, 5000)
-        return inflater.inflate(R.layout.fragment_worship_three, container, false)
+        return bind.root
     }
 
 }
