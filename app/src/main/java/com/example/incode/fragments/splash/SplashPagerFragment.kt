@@ -11,7 +11,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.incode.R
 import com.example.incode.databinding.FragmentSplashPagerBinding
-import com.example.incode.models.SplashData
 
 class SplashPagerFragment: Fragment(), View.OnClickListener {
     private lateinit var bind: FragmentSplashPagerBinding

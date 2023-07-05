@@ -51,12 +51,9 @@ class MainFragment : Fragment(), View.OnClickListener {
                 is Resource.Success -> {
                     placesDetails.let {
                         val resultsList = it.placesData!!.results
-                        bind.early.text = resultsList.size.toString()
-                        //Toast.makeText(requireContext(), resultsList[0].name, Toast.LENGTH_SHORT).show()
 
                         for (result in resultsList) {
                             worshipList.add(result)
-//                            bind.early.text = result.name
 
                         }
                     }
@@ -235,7 +232,6 @@ class MainFragment : Fragment(), View.OnClickListener {
                 is Resource.Success -> {
                     it.let {
                         val theatres = it.placesData!!.results
-                        bind.early.text = theatres.size.toString()
 
                         for (theatre in theatres){
                             movieList.add(theatre)
@@ -256,7 +252,6 @@ class MainFragment : Fragment(), View.OnClickListener {
         })
 
         //viewing the size of the lists
-        bind.early.text = "worship: ${worshipList.size} movies: ${movieList.size}, pools: ${poolsList.size}, gyms: ${gymList.size} "
 
 
         //setting onclick listeners
