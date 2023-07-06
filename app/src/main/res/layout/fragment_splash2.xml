@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.SplashFragment2">
+    tools:context=".fragments.splash.SplashFragment2">
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"

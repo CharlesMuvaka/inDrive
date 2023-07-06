@@ -46,9 +46,9 @@
             android:id="@+id/welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome charles, "
-            android:fontFamily="@font/bubblegum_sans"
-            android:textSize="30sp"
+            android:text="Welcome to InDrive, "
+            android:fontFamily="@font/poppins"
+            android:textSize="20sp"
             android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
             app:layout_constraintBottom_toTopOf="@id/slogan"
@@ -67,7 +67,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView2"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+            class="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:defaultNavHost="true"

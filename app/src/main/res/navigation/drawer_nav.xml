@@ -24,4 +24,9 @@
         android:id="@+id/logout"
         android:name="com.example.incode.fragments.Logout"
         android:label="Logout" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.incode.fragments.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
 </navigation>

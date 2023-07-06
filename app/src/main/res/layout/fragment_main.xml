@@ -21,174 +21,93 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
+
     <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/bored"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/bored"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/topCard"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/cont1"
+                android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/worship_graph"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/first"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Break your Fast!!"
-                        android:textSize="25sp"
-                        android:textColor="@color/mainColor"
-                        android:textStyle="bold"
-                        android:textAlignment="textStart"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        />
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/firstRec"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toTopOf="@id/circle1"
-                        app:layout_constraintTop_toBottomOf="@id/first"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
 
-                    <TextView
-                        android:id="@+id/circle1"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:background="@drawable/background"
-                        android:backgroundTint="@color/mainColor"
-                        android:padding="8dp"
-                        android:layout_marginBottom="6dp"
-                        android:layout_marginEnd="10dp"
-                        android:textAlignment="center"
-                        app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintTop_toBottomOf="@id/firstRec"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/circle2"/>
-                    <TextView
-                        android:id="@+id/circle2"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:background="@drawable/background"
-                        android:backgroundTint="@color/grey"
-                        android:padding="8dp"
-                        android:layout_marginEnd="10dp"
-                        android:textAlignment="center"
-                        app:layout_constraintBottom_toBottomOf="@id/circle1"
-                        app:layout_constraintTop_toTopOf="@id/circle1"
-                        app:layout_constraintStart_toEndOf="@id/circle1"
-                        app:layout_constraintEnd_toStartOf="@id/circle3"/>
-                    <TextView
-                        android:id="@+id/circle3"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:background="@drawable/background"
-                        android:backgroundTint="@color/grey"
-                        android:padding="8dp"
-                        android:textAlignment="center"
-                        app:layout_constraintTop_toTopOf="@id/circle2"
-                        app:layout_constraintStart_toEndOf="@id/circle2"
-                        app:layout_constraintBottom_toBottomOf="@id/circle2"
-                        app:layout_constraintEnd_toEndOf="parent"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card2"
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/cont2"
+                android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/topCard"
+                app:defaultNavHost="true"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/second"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Meet New animals!!"
-                        android:textSize="25sp"
-                        android:textColor="@color/mainColor"
-                        android:textStyle="bold"
-                        android:textAlignment="textStart"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        />
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/secRec"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/second"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/cont1"
+                app:navGraph="@navigation/breakfast_graph" />
 
-                    <TextView
-                        android:id="@+id/cir1"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:background="@drawable/background"
-                        android:backgroundTint="@color/mainColor"
-                        android:padding="8dp"
-                        android:layout_marginBottom="6dp"
-                        android:layout_marginEnd="10dp"
-                        android:textAlignment="center"
-                        app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintTop_toBottomOf="@id/secRec"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/cir1"/>
-                    <TextView
-                        android:id="@+id/cir2"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:background="@drawable/background"
-                        android:backgroundTint="@color/grey"
-                        android:padding="8dp"
-                        android:layout_marginEnd="10dp"
-                        android:textAlignment="center"
-                        app:layout_constraintBottom_toBottomOf="@id/cir1"
-                        app:layout_constraintTop_toTopOf="@id/cir1"
-                        app:layout_constraintStart_toEndOf="@id/cir1"
-                        app:layout_constraintEnd_toStartOf="@id/cir3"/>
-                    <TextView
-                        android:id="@+id/cir3"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:background="@drawable/background"
-                        android:backgroundTint="@color/grey"
-                        android:padding="8dp"
-                        android:textAlignment="center"
-                        app:layout_constraintTop_toTopOf="@id/cir2"
-                        app:layout_constraintStart_toEndOf="@id/cir2"
-                        app:layout_constraintBottom_toBottomOf="@id/cir2"
-                        app:layout_constraintEnd_toEndOf="parent"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/cont3"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:defaultNavHost="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cont2"
+                app:navGraph="@navigation/mid_morning_graph" />
+
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/cont4"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:defaultNavHost="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cont3"
+                app:navGraph="@navigation/lunch_graph" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/cont5"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:defaultNavHost="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cont4"
+                app:navGraph="@navigation/afternoon_graph" />
+
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/cont6"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:defaultNavHost="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cont5"
+                app:navGraph="@navigation/evening_graph" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </ScrollView>
 
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

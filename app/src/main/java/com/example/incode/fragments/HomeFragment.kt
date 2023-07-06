@@ -25,8 +25,6 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.incode.R
 import com.example.incode.databinding.FragmentHomeBinding
-import com.example.incode.models.MapData
-import com.example.incode.models.Place
 import com.example.incode.uitils.Constants
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.*
@@ -335,38 +333,38 @@ class HomeFragment : Fragment(), OnMapReadyCallback, View.OnClickListener {
 
 
     //creating an inner class to pass the url string generated
-    private inner class GetDirection(var url: String) :
-        AsyncTask<Void, Void, List<List<LatLng>>>() {
-        override fun doInBackground(vararg p0: Void?): List<List<LatLng>> {
-            val client = OkHttpClient()
-            val request = Request.Builder().url(url).build()
-            val response = client.newCall(request).request()
-            val data = response.body().toString()
-
-            val result = ArrayList<List<LatLng>>()
-
-            try {
-                val responseObject = Gson().fromJson(data, MapData::class.java)
-                val path = ArrayList<LatLng>()
-
-                for (i in 0 until responseObject.routes[0].legs[0].steps.size) {
-                    path.addAll(decodePolyline(responseObject.routes[0].legs[0].steps[i].polyLine.points))
-                }
-
-                result.add(path)
-            } catch (e: Exception) {
-                println(e.message)
-            }
-            return result
-        }
-
-        override fun onPostExecute(result: List<List<LatLng>>?) {
-            val lineOption = PolylineOptions()
-            for (i in result!!.indices) {
-                lineOption.addAll(result[i]).width(10f).color(Color.GREEN).geodesic(true)
-            }
-            googleMap.addPolyline(lineOption)
-        }
-    }
+//    private inner class GetDirection(var url: String) :
+//        AsyncTask<Void, Void, List<List<LatLng>>>() {
+//        override fun doInBackground(vararg p0: Void?): List<List<LatLng>> {
+//            val client = OkHttpClient()
+//            val request = Request.Builder().url(url).build()
+//            val response = client.newCall(request).request()
+//            val data = response.body().toString()
+//
+//            val result = ArrayList<List<LatLng>>()
+//
+//            try {
+//                val responseObject = Gson().fromJson(data, MapData::class.java)
+//                val path = ArrayList<LatLng>()
+//
+//                for (i in 0 until responseObject.routes[0].legs[0].steps.size) {
+//                    path.addAll(decodePolyline(responseObject.routes[0].legs[0].steps[i].polyLine.points))
+//                }
+//
+//                result.add(path)
+//            } catch (e: Exception) {
+//                println(e.message)
+//            }
+//            return result
+//        }
+//
+//        override fun onPostExecute(result: List<List<LatLng>>?) {
+//            val lineOption = PolylineOptions()
+//            for (i in result!!.indices) {
+//                lineOption.addAll(result[i]).width(10f).color(Color.GREEN).geodesic(true)
+//            }
+//            googleMap.addPolyline(lineOption)
+//        }
+//    }
 
 }

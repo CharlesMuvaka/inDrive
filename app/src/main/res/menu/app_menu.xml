@@ -27,6 +27,10 @@
                     android:id="@+id/wallet"
                     android:title="Wallet"
                     android:icon="@drawable/ic_wallet"/>
+             <item
+                    android:id="@+id/loginFragment"
+                    android:title="Be our Driver"
+                    android:icon="@drawable/ic_drive"/>
                 <item
                     android:id="@+id/settings"
                     android:title="Settings"
