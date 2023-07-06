@@ -1,5 +1,6 @@
 package com.example.incode.fragments.afternoon
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -9,15 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
 import com.example.incode.R
+import com.example.incode.SecondActivity
+import com.example.incode.databinding.FragmentNoonThreeBinding
 
 
 class NoonFragmentThree : Fragment() {
+    private lateinit var bind: FragmentNoonThreeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Handler(Looper.getMainLooper()).postDelayed({
-            NavHostFragment.findNavController(this).navigate(R.id.action_noonFragmentThree_to_noonFragmentTwo)
-        }, 5000)
+
     }
 
     override fun onCreateView(
@@ -25,7 +27,17 @@ class NoonFragmentThree : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_noon_three, container, false)
+        bind = FragmentNoonThreeBinding.inflate(inflater)
+        Handler(Looper.getMainLooper()).postDelayed({
+            NavHostFragment.findNavController(this).navigate(R.id.action_noonFragmentThree_to_noonFragmentTwo)
+        }, 5000)
+
+        bind.root.setOnClickListener{
+            val intent = Intent(requireContext(), SecondActivity::class.java)
+            startActivity(intent)
+        }
+        return bind.root
+
     }
 
 }

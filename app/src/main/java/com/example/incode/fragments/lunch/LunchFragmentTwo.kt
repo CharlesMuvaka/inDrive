@@ -1,5 +1,6 @@
 package com.example.incode.fragments.lunch
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
 import com.example.incode.R
+import com.example.incode.SecondActivity
 import com.example.incode.databinding.FragmentLunchTwoBinding
 
 class LunchFragmentTwo : Fragment() {
@@ -24,6 +26,11 @@ class LunchFragmentTwo : Fragment() {
         Handler(Looper.getMainLooper()).postDelayed({
             NavHostFragment.findNavController(this).navigate(action)
         }, 5000)
+
+        bind.root.setOnClickListener{
+            val intent = Intent(requireContext(), SecondActivity::class.java)
+            startActivity(intent)
+        }
         return bind.root
     }
 

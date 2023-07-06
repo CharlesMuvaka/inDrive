@@ -1,5 +1,6 @@
 package com.example.incode.fragments.afternoon
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -9,30 +10,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
 import com.example.incode.R
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.example.incode.SecondActivity
+import com.example.incode.databinding.FragmentNoonOneBinding
 
 class NoonFragmentOne : Fragment() {
+    private lateinit var bind: FragmentNoonOneBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        Handler(Looper.getMainLooper()).postDelayed({
-            NavHostFragment.findNavController(this).navigate(R.id.action_noonFragmentOne_to_noonFragmentThree)
-        }, 5000)
-
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_noon_one, container, false)
+        bind = FragmentNoonOneBinding.inflate(inflater)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            NavHostFragment.findNavController(this).navigate(R.id.action_noonFragmentOne_to_noonFragmentThree)
+        }, 5000)
+        bind.root.setOnClickListener{
+            val intent = Intent(requireContext(), SecondActivity::class.java)
+            startActivity(intent)
+        }
+        return bind.root
     }
 
 }

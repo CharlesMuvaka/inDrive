@@ -12,11 +12,20 @@
     <ImageView
         android:id="@+id/placeImage"
         android:layout_height="200dp"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/gym"
+        app:layout_constraintEnd_toStartOf="@id/placeImage1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/placeImage1"
+        android:layout_height="200dp"
+        android:layout_width="200dp"
         android:scaleType="fitXY"
         android:src="@drawable/gym"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/placeImage"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -28,7 +37,7 @@
         android:textColor="@color/mainColor"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/status"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/placeImage" />
 
@@ -84,43 +93,58 @@
         app:layout_constraintTop_toTopOf="@id/star3" />
 
     <TextView
-        android:id="@+id/circle1"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:background="@drawable/background"
-        android:backgroundTint="@color/mainColor"
-        android:padding="8dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="10dp"
-        android:textAlignment="center"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        android:id="@+id/status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Open now: true"
         app:layout_constraintTop_toBottomOf="@id/placeName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/circle2"/>
+        app:layout_constraintBottom_toTopOf="@id/address"
+        />
     <TextView
-        android:id="@+id/circle2"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:background="@drawable/background"
-        android:backgroundTint="@color/grey"
-        android:padding="8dp"
-        android:layout_marginEnd="10dp"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@id/circle1"
-        app:layout_constraintTop_toTopOf="@id/circle1"
-        app:layout_constraintStart_toEndOf="@id/circle1"
-        app:layout_constraintEnd_toStartOf="@id/circle3"/>
+        android:id="@+id/address"
+        android:layout_width="0dp"
+        android:text="Address:"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rating"
+        app:layout_constraintTop_toBottomOf="@id/status"
+        />
     <TextView
-        android:id="@+id/circle3"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:background="@drawable/background"
-        android:backgroundTint="@color/grey"
-        android:padding="8dp"
-        android:textAlignment="center"
-        app:layout_constraintTop_toTopOf="@id/circle2"
-        app:layout_constraintStart_toEndOf="@id/circle2"
-        app:layout_constraintBottom_toBottomOf="@id/circle2"
+        android:id="@+id/rating"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Rated at: "
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/address"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+    <TextView
+        android:id="@+id/people"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Rated at: "
+        android:drawableStart="@drawable/ic_thumb_up"
+        android:drawablePadding="2dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/address"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+        android:id="@+id/reference"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Reference "
+        android:drawablePadding="2dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/rating"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

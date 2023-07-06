@@ -21,7 +21,7 @@ class LoginFragment: Fragment(), View.OnClickListener {
 
     override fun onClick(p0: View?) {
         if (p0 == bind.submit){
-            p0.findNavController().navigate(R.id.action_loginFragment_to_drawerFragment)
+            //p0.findNavController().navigate(R.id.action_loginFragment_to_drawerFragment)
             //NavHostFragment.findNavController(this).navigate(R.id.action_loginFragment_to_homeFragment)
         }
     }

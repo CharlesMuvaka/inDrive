@@ -15,15 +15,13 @@ import com.example.incode.databinding.FragmentSplashPagerBinding
 class SplashPagerFragment: Fragment(), View.OnClickListener {
     private lateinit var bind: FragmentSplashPagerBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Handler(Looper.getMainLooper()).postDelayed({
-            NavHostFragment.findNavController(this).navigate(R.id.action_splashPagerFragment_to_splashFragment2)
-        }, 5000)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         bind = FragmentSplashPagerBinding.inflate(inflater)
+
+        val action = SplashPagerFragmentDirections.actionSplashPagerFragmentToSplashFragment2()
+        Handler(Looper.getMainLooper()).postDelayed({
+            NavHostFragment.findNavController(this).navigate(action)
+        }, 5000)
 
         bind.buttonSkip.setOnClickListener(this::onClick)
         bind.buttonNext.setOnClickListener(this::onClick)
@@ -33,11 +31,13 @@ class SplashPagerFragment: Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if(v == bind.buttonSkip){
-            v.findNavController().navigate(R.id.action_splashPagerFragment_to_loginFragment)
+            val action = SplashPagerFragmentDirections.actionSplashPagerFragmentToDrawerFragment()
+            NavHostFragment.findNavController(this).navigate(action)
         }
 
         if (v == bind.buttonNext){
-            v.findNavController().navigate(R.id.action_splashPagerFragment_to_splashFragment2)
+            val action = SplashPagerFragmentDirections.actionSplashPagerFragmentToSplashFragment2()
+            NavHostFragment.findNavController(this).navigate(action)
         }
     }
 }

@@ -22,10 +22,7 @@ class SplashFragment : Fragment(), View.OnClickListener {
         val window = requireActivity().window
         window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.white)
 
-        //initialising the splash
-        Handler(Looper.getMainLooper()).postDelayed({
-            NavHostFragment.findNavController(this).navigate(R.id.action_splashFragment_to_loginFragment)
-        }, 5000)
+
 
     }
 
@@ -36,6 +33,11 @@ class SplashFragment : Fragment(), View.OnClickListener {
     ): View? {
         bind = FragmentSplashBinding.inflate(inflater)
 
+        val action = SplashFragmentDirections.actionSplashFragmentToDrawerFragment()
+        Handler(Looper.getMainLooper()).postDelayed({
+            NavHostFragment.findNavController(this).navigate(action)
+        }, 5000)
+
         //setting the click listeners
         bind.buttonSkip.setOnClickListener(this::onClick)
         bind.buttonNext.setOnClickListener(this::onClick)
@@ -45,11 +47,13 @@ class SplashFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(p0: View?) {
         if (p0 == bind.buttonSkip){
-            NavHostFragment.findNavController(this).navigate(R.id.action_splashFragment_to_loginFragment)
+            val action = SplashFragmentDirections.actionSplashFragmentToDrawerFragment()
+            NavHostFragment.findNavController(this).navigate(action)
         }
 
         if (p0 == bind.buttonNext){
-            NavHostFragment.findNavController(this).navigate(R.id.action_splashFragment_to_loginFragment)
+            val action = SplashFragmentDirections.actionSplashFragmentToDrawerFragment()
+            NavHostFragment.findNavController(this).navigate(action)
         }
     }
 }
