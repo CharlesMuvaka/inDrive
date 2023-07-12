@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/bubblegum_sans"
         android:text="Be a Driver "
-        android:textColor="@color/black"
+        android:textColor="@color/mainColor"
         android:textSize="55sp"
         app:layout_constraintBottom_toTopOf="@id/slogan"
         app:layout_constraintEnd_toEndOf="parent"

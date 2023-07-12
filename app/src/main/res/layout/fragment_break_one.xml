@@ -4,15 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
     app:cardCornerRadius="8dp"
+    android:backgroundTint="@color/mainColor"
     app:cardElevation="8dp"
     tools:context=".fragments.church.WorshipFragmentOne">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/design">
+        android:layout_margin="1dp"
+        android:background="@drawable/design"
+        android:backgroundTint="@color/white"
+        >
         <TextView
             android:id="@+id/evening"
             android:layout_width="0dp"
@@ -20,7 +23,7 @@
             android:text="Cap it up in style"
             android:layout_margin="8dp"
             android:fontFamily="@font/poppins"
-            android:textColor="@color/black"
+            android:textColor="@color/mainColor"
             android:textSize="23sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="fitXY"
-            android:src="@drawable/gym"
+            android:src="@drawable/coffee"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/evening" />
@@ -45,8 +48,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="Ole Sereni"
-            android:textColor="@color/mainColor"
-            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

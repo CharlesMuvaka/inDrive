@@ -8,10 +8,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.navigation.fragment.NavHostFragment
+import com.example.incode.MainActivity
 import com.example.incode.R
 import com.example.incode.SecondActivity
 import com.example.incode.databinding.FragmentEveningOneBinding
+import com.squareup.picasso.Picasso
 
 class EveningFragmentOne : Fragment() {
     private lateinit var bind: FragmentEveningOneBinding
@@ -21,6 +24,16 @@ class EveningFragmentOne : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         bind = FragmentEveningOneBinding.inflate(inflater)
+        bind.root.startAnimation(
+            AnimationUtils.loadAnimation(requireContext(), R.anim.enter_anim)
+        )
+
+        val place = (activity as MainActivity).listGyms[11]
+        bind.evening.text = "Its golf time, flex yoo"
+        bind.placeName.text = "${place.name.split(" ")[0]} ${place.name.split(" ")[1]} golf club"
+        //Picasso.get().load(place.photos[0].photo_reference).into(bind.placeImage)
+
+
         val action = EveningFragmentOneDirections.actionEveningFragmentOneToEveningFragmentThree()
         Handler(Looper.getMainLooper()).postDelayed({
             NavHostFragment.findNavController(this).navigate(action)
@@ -28,6 +41,8 @@ class EveningFragmentOne : Fragment() {
 
         bind.root.setOnClickListener{
             val intent = Intent(requireContext(), SecondActivity::class.java)
+            intent.putExtra("type", 3)
+
             startActivity(intent)
         }
         return bind.root

@@ -6,6 +6,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
@@ -33,6 +34,9 @@ class SplashFragment : Fragment(), View.OnClickListener {
     ): View? {
         bind = FragmentSplashBinding.inflate(inflater)
 
+        bind.root.startAnimation(
+            AnimationUtils.loadAnimation(requireContext(), R.anim.enter_anim)
+        )
         val action = SplashFragmentDirections.actionSplashFragmentToDrawerFragment()
         Handler(Looper.getMainLooper()).postDelayed({
             NavHostFragment.findNavController(this).navigate(action)

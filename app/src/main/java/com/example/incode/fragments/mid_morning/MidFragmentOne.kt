@@ -8,10 +8,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.navigation.fragment.NavHostFragment
+import com.example.incode.MainActivity
 import com.example.incode.R
 import com.example.incode.SecondActivity
 import com.example.incode.databinding.FragmentMidOneBinding
+import com.squareup.picasso.Picasso
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,6 +35,14 @@ class MidFragmentOne : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         bind = FragmentMidOneBinding.inflate(inflater)
+        bind.root.startAnimation(
+            AnimationUtils.loadAnimation(requireContext(), R.anim.enter_anim)
+        )
+        val place = (activity as MainActivity).listGyms[6]
+        bind.evening.text = "Gorillas and Chimps"
+        bind.placeName.text = "${place.name.split(" ")[0]} ${place.name.split(" ")[1]} city museum"
+        //Picasso.get().load(place.photos[0].photo_reference).into(bind.placeImage)
+
         val action = MidFragmentOneDirections.actionMidFragmentOneToMidFragmentThree()
         Handler(Looper.getMainLooper()).postDelayed({
             NavHostFragment.findNavController(this).navigate(action)
@@ -39,6 +50,8 @@ class MidFragmentOne : Fragment() {
 
         bind.root.setOnClickListener{
             val intent = Intent(requireContext(), SecondActivity::class.java)
+            intent.putExtra("type", 5)
+
             startActivity(intent)
         }
         return bind.root

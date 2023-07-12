@@ -5,6 +5,8 @@ import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PERMISSION_GRANTED
+import android.location.Address
+import android.location.Geocoder
 import android.location.LocationManager
 import android.media.audiofx.Equalizer.Settings
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +20,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.incode.datab.Drivers
 import com.example.incode.datab.Places
+import com.example.incode.databinding.ActivityMainBinding
 import com.example.incode.models.Driver
 import com.example.incode.models.Place
 import com.example.incode.models.PlaceResult
@@ -31,9 +34,13 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.model.LatLng
 import com.skydoves.transformationlayout.onTransformationStartContainer
+import java.io.IOException
+
 class MainActivity : AppCompatActivity() {
-private lateinit var locationProvider: FusedLocationProviderClient
+    private lateinit var bind: ActivityMainBinding
+    private lateinit var locationProvider: FusedLocationProviderClient
     lateinit var placesViewModel: PlacesViewModel
     lateinit var placesGymModel: PlacesViewModel
     lateinit var placesBreakModel: PlacesViewModel
@@ -44,6 +51,8 @@ private lateinit var locationProvider: FusedLocationProviderClient
     lateinit var movieViewModel: PlacesViewModel
     var listGyms = ArrayList<PlaceResult>()
     var listworship = ArrayList<PlaceResult>()
+    var locationLatitude: Double? = null
+    var locationLongitude: Double? = null
 
 
     var places = ArrayList<Place>()
@@ -53,12 +62,17 @@ private lateinit var locationProvider: FusedLocationProviderClient
     override fun onCreate(savedInstanceState: Bundle?) {
         onTransformationStartContainer() //initialising view transformation
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        bind = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(bind.root)
 
         locationProvider = LocationServices.getFusedLocationProviderClient(this)
 
-        //getting the users current location
+        //getting the users current location and latitude details
         //getUserCurrentLocation()
+
+
+
+
 
         //initialising dummy search types
         val searchType = "worship"
@@ -92,7 +106,8 @@ private lateinit var locationProvider: FusedLocationProviderClient
         placesViewModel = ViewModelProvider(this, worshipFactory)[PlacesViewModel::class.java]
         placesBreakModel = ViewModelProvider(this, restaurantsFactory)[PlacesViewModel::class.java]
         placesGymModel = ViewModelProvider(this, gymFactory)[PlacesViewModel::class.java]
-        placesMidMorningModel = ViewModelProvider(this, swimmingPoolFactory)[PlacesViewModel::class.java]
+        placesMidMorningModel =
+            ViewModelProvider(this, swimmingPoolFactory)[PlacesViewModel::class.java]
         placesAfternoonModel = ViewModelProvider(this, parksFactory)[PlacesViewModel::class.java]
         placesEveningModel = ViewModelProvider(this, museumsFactory)[PlacesViewModel::class.java]
         golfViewModel = ViewModelProvider(this, golfClubsFactory)[PlacesViewModel::class.java]
@@ -103,7 +118,7 @@ private lateinit var locationProvider: FusedLocationProviderClient
                 is Resource.Success -> {
                     placeDetails.let {
                         val placeList = it.placesData!!.results
-                        for (i in placeList.indices){
+                        for (i in placeList.indices) {
                             listGyms.add(placeList[i])
                         }
                         Toast.makeText(this, listGyms.size.toString(), Toast.LENGTH_LONG).show()
@@ -112,8 +127,9 @@ private lateinit var locationProvider: FusedLocationProviderClient
 
                 is Resource.Failure -> {
                     placeDetails.let {
-                        Toast.makeText(this
-                            , it.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this, it.message, Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
@@ -128,12 +144,12 @@ private lateinit var locationProvider: FusedLocationProviderClient
 
         })
 
-        placesViewModel.places.observe(this, Observer { placesDetails ->
+        placesGymModel.places.observe(this, Observer { placesDetails ->
             when (placesDetails) {
                 is Resource.Success -> {
                     placesDetails.let {
                         val worship = it.placesData!!.results
-                        for(i in worship.indices){
+                        for (i in worship.indices) {
                             listworship.add(worship[i])
                         }
                     }
@@ -155,35 +171,54 @@ private lateinit var locationProvider: FusedLocationProviderClient
         })
 
 
+    }
 
-    }
-    private fun isLocationEnabled(): Boolean{
+    private fun isLocationEnabled(): Boolean {
         val location = getSystemService(LOCATION_SERVICE) as LocationManager
-        return location.isProviderEnabled(LocationManager.GPS_PROVIDER) || location.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+        return location.isProviderEnabled(LocationManager.GPS_PROVIDER) || location.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER
+        )
     }
+
     private fun getUserCurrentLocation() {
         //checking if location permissions are enabled
-        if(isLocationEnabled()){
+        if (isLocationEnabled()) {
 
             //checking other permissions
-            if(ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-                locationProvider.lastLocation.addOnCompleteListener{
-                    val location = it.result
-                    if (location == null){
-                        Toast.makeText(this, "requesting for your current location", Toast.LENGTH_LONG).show()
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    ACCESS_FINE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(
+                    this,
+                    ACCESS_COARSE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                locationProvider.lastLocation.addOnCompleteListener {
+                    if (it.result == null) {
+                        Toast.makeText(
+                            this,
+                            "requesting for your current location",
+                            Toast.LENGTH_LONG
+                        ).show()
                         requestUsersCurrentLocation()
-                    }else{
-                        Toast.makeText(this, "lat: ->  ${location.latitude} long: ->  ${location.longitude}", Toast.LENGTH_LONG).show()
+                    } else {
+                        locationLatitude = it.result.latitude
+                        locationLongitude = it.result.longitude
+                        Toast.makeText(
+                            this,
+                            "lat: ->  ${locationLatitude} long: ->  ${locationLongitude}",
+                            Toast.LENGTH_LONG
+                        ).show()
 
                     }
                 }
-            }else{
+            } else {
                 //requesting user to turn on course and fine permissions
                 getPermissions()
             }
 
-        }else{
+        } else {
             val locationIntent = Intent(ACTION_LOCATION_SOURCE_SETTINGS)
             startActivity(locationIntent)
         }
@@ -191,11 +226,11 @@ private lateinit var locationProvider: FusedLocationProviderClient
 
     private fun getPermissions() {
         val permissions = arrayOf(ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION)
-        ActivityCompat.requestPermissions(this, permissions,44 )
+        ActivityCompat.requestPermissions(this, permissions, 44)
     }
 
     private fun requestUsersCurrentLocation() {
-        val locationCallBack = object: LocationCallback(){
+        val locationCallBack = object : LocationCallback() {
             override fun onLocationResult(p0: LocationResult) {
                 val lastLocation = p0.lastLocation
                 val latitude = lastLocation!!.latitude
@@ -208,15 +243,19 @@ private lateinit var locationProvider: FusedLocationProviderClient
             }
         }
         val request = LocationRequest()
-        request.priority =PRIORITY_HIGH_ACCURACY
+        request.priority = PRIORITY_HIGH_ACCURACY
         request.interval = 5
         request.fastestInterval = 0
         request.numUpdates = 1
 
-        if(ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED){
+        if (ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED
+            && ActivityCompat.checkSelfPermission(
+                this,
+                ACCESS_COARSE_LOCATION
+            ) == PERMISSION_GRANTED
+        ) {
             locationProvider.requestLocationUpdates(request, locationCallBack, Looper.myLooper())
-        }else{
+        } else {
             getPermissions()
         }
 

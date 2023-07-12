@@ -8,10 +8,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.navigation.fragment.NavHostFragment
+import com.example.incode.MainActivity
 import com.example.incode.R
 import com.example.incode.SecondActivity
 import com.example.incode.databinding.FragmentLunchThreeBinding
+import com.squareup.picasso.Picasso
 
 class LunchFragmentThree : Fragment() {
   private lateinit var bind: FragmentLunchThreeBinding
@@ -22,6 +25,14 @@ class LunchFragmentThree : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         bind = FragmentLunchThreeBinding.inflate(inflater)
+        val place = (activity as MainActivity).listGyms[8]
+        bind.evening.text = "Its burger Tuesday"
+        bind.placeName.text = "${place.name.split(" ")[0]} ${place.name.split(" ")[1]} hotel"
+        //Picasso.get().load(place.photos[0].photo_reference).into(bind.placeImage)
+
+        bind.root.startAnimation(
+            AnimationUtils.loadAnimation(requireContext(), R.anim.enter_anim)
+        )
         val action = LunchFragmentThreeDirections.actionLunchFragmentThreeToLunchFragmentTwo()
         Handler(Looper.getMainLooper()).postDelayed({
             NavHostFragment.findNavController(this).navigate(action)
@@ -29,6 +40,8 @@ class LunchFragmentThree : Fragment() {
 
         bind.root.setOnClickListener{
             val intent = Intent(requireContext(), SecondActivity::class.java)
+            intent.putExtra("type", 4)
+
             startActivity(intent)
         }
         return bind.root
