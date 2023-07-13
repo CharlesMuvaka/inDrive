@@ -6,6 +6,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.example.incode.R
@@ -16,6 +17,10 @@ class SplashFragment2: Fragment(), View.OnClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         bind = FragmentSplash2Binding.inflate(inflater)
+
+        bind.root.startAnimation(
+            AnimationUtils.loadAnimation(requireContext(), R.anim.enter_anim)
+        )
         val action = SplashFragment2Directions.actionSplashFragment2ToSplashFragment()
         Handler(Looper.getMainLooper()).postDelayed({
             NavHostFragment.findNavController(this).navigate(action)

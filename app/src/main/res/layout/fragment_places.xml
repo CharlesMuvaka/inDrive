@@ -1,10 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:id="@+id/bored"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Bored, check out these places"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <HorizontalScrollView
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/bored"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rec">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:background="@drawable/background"
+                android:backgroundTint="@color/mainColor"
+                android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:padding="8dp"
+                android:text="museums"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+            <TextView
+                android:background="@drawable/background"
+                android:backgroundTint="@color/mainColor"
+                android:id="@+id/gym"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_width="wrap_content"
+                android:padding="8dp"
+                android:text="Gyms"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent
+"
+                app:layout_constraintStart_toEndOf="@id/submit"/>
+            <TextView
+                android:background="@drawable/background"
+                android:backgroundTint="@color/mainColor"
+                android:id="@+id/restaurants"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_width="wrap_content"
+                android:padding="8dp"
+                android:text="Restaurants"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/gym"/>
+            <TextView
+                android:background="@drawable/background"
+                android:backgroundTint="@color/mainColor"
+                android:id="@+id/worship"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_width="wrap_content"
+                android:padding="8dp"
+                android:text="worship places"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/restaurants"/>
+            <TextView
+                android:background="@drawable/background"
+                android:backgroundTint="@color/mainColor"
+                android:id="@+id/hospitals"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_width="wrap_content"
+                android:padding="8dp"
+                android:text="worship places"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/worship"/>
+            <TextView
+                android:background="@drawable/background"
+                android:backgroundTint="@color/mainColor"
+                android:id="@+id/movie"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_width="wrap_content"
+                android:padding="8dp"
+                android:text="movie theatres"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/hospitals"/>
+            <TextView
+                android:background="@drawable/background"
+                android:backgroundTint="@color/mainColor"
+                android:id="@+id/schools"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_width="wrap_content"
+                android:padding="8dp"
+                android:text="learning institutions"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/movie"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </HorizontalScrollView>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rec"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/buttons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

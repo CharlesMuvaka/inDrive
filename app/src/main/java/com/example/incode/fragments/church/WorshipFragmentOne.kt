@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
@@ -21,6 +22,7 @@ import com.example.incode.databinding.FragmentWorshipOneBinding
 import com.example.incode.fragments.MainFragment
 import com.example.incode.models.PlaceResult
 import com.example.incode.models.Resource
+import com.squareup.picasso.Picasso
 
 class WorshipFragmentOne : Fragment() {
     private lateinit var bind: FragmentWorshipOneBinding
@@ -37,9 +39,19 @@ class WorshipFragmentOne : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         bind = FragmentWorshipOneBinding.inflate(inflater)
-        val viewModel = (activity as MainActivity).listworship
+        //val viewModel = (activity as MainActivity).listworship
         //getting worship responses from the view model
-        bind.placeName.text = viewModel[0].name
+       // bind.placeName.text = viewModel[0].name
+
+        bind.root.startAnimation(
+            AnimationUtils.loadAnimation(requireContext(), R.anim.enter_anim)
+        )
+
+        val place = (activity as MainActivity).listGyms[13]
+        bind.evening.text = "Cleanse your aura"
+        bind.placeName.text = "${place.name.split(" ")[0]} ${place.name.split(" ")[1]} Mosque"
+        //Picasso.get().load(place.photos[0].photo_reference).into(bind.placeImage)
+
 
         Handler(Looper.getMainLooper()).postDelayed({
             NavHostFragment.findNavController(this).navigate(R.id.action_worshipFragmentOne_to_worshipFragmentTwo)
@@ -47,6 +59,8 @@ class WorshipFragmentOne : Fragment() {
 
         bind.root.setOnClickListener {
             val intent = Intent(requireContext(), SecondActivity::class.java)
+            intent.putExtra("type", 2)
+
             startActivity(intent)
         }
 

@@ -6,25 +6,20 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.location.LocationManager
-import android.media.audiofx.Equalizer.Settings
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS
-import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import com.example.incode.api.RetrofitClient
 import com.example.incode.datab.Drivers
 import com.example.incode.datab.Places
+import com.example.incode.databinding.ActivityMainBinding
 import com.example.incode.models.Driver
 import com.example.incode.models.Place
 import com.example.incode.models.PlaceResult
-import com.example.incode.models.Resource
-import com.example.incode.repository.PlacesRepo
-import com.example.incode.viewmodel.PlacesModelFactory
-import com.example.incode.viewmodel.PlacesViewModel
+import com.example.incode.models.TestResultsOne
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -32,158 +27,258 @@ import com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.skydoves.transformationlayout.onTransformationStartContainer
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 class MainActivity : AppCompatActivity() {
-private lateinit var locationProvider: FusedLocationProviderClient
-    lateinit var placesViewModel: PlacesViewModel
-    lateinit var placesGymModel: PlacesViewModel
-    lateinit var placesBreakModel: PlacesViewModel
-    lateinit var placesMidMorningModel: PlacesViewModel
-    lateinit var placesAfternoonModel: PlacesViewModel
-    lateinit var placesEveningModel: PlacesViewModel
-    lateinit var golfViewModel: PlacesViewModel
-    lateinit var movieViewModel: PlacesViewModel
-    var listGyms = ArrayList<PlaceResult>()
-    var listworship = ArrayList<PlaceResult>()
+    private lateinit var bind: ActivityMainBinding
+    private lateinit var locationProvider: FusedLocationProviderClient
+    var locationLatitude: Double? = null
+    var locationLongitude: Double? = null
 
 
     var places = ArrayList<Place>()
     var drivers = ArrayList<Driver>()
+    var listGyms = ArrayList<PlaceResult>()
+    var listMuseums = ArrayList<PlaceResult>()
+    var listRestaurants = ArrayList<PlaceResult>()
+    var listHotels = ArrayList<PlaceResult>()
+    var listWorship = ArrayList<PlaceResult>()
+    var listMovie = ArrayList<PlaceResult>()
+    var listSchools = ArrayList<PlaceResult>()
+    var listHospitals = ArrayList<PlaceResult>()
+    var listGolf = ArrayList<PlaceResult>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         onTransformationStartContainer() //initialising view transformation
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        bind = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(bind.root)
 
         locationProvider = LocationServices.getFusedLocationProviderClient(this)
 
-        //getting the users current location
+        //getting the users current location and latitude details
         //getUserCurrentLocation()
-
-        //initialising dummy search types
-        val searchType = "worship"
-        val searchType1 = "restaurant"
-        val searchType2 = "swimming pool"
-        val searchType3 = "park"
-        val searchType4 = "museum"
-        val searchType5 = "golf club"
-        val searchType6 = "Movie Theatre"
-        val searchType7 = "gym"
-
-        val place = "Nairobi"
 
         places = Places().places
         drivers = Drivers().drivers
+        val client = RetrofitClient.apiInstance
 
-        //initialising the places repository
-        val placesRepo = PlacesRepo()
+        val call = client.getPlaces("gyms", "Nairobi")
+        val call1 = client.getPlaces("museums", "Nairobi")
+        val call2 = client.getPlaces("movie theatres", "Nairobi")
+        val call3 = client.getPlaces("schools", "Nairobi")
+        val call4 = client.getPlaces("hospitals", "Nairobi")
+        val call5 = client.getPlaces("restaurants", "Nairobi")
+        val call6 = client.getPlaces("golf clubs", "Nairobi")
+        val call7 = client.getPlaces("hotels", "Nairobi")
+        val call8 = client.getPlaces("worship", "Nairobi")
 
-        // initialising the view model factory
-        val worshipFactory = PlacesModelFactory(searchType, place, placesRepo)
-        val gymFactory = PlacesModelFactory("gym", place, placesRepo)
-        val restaurantsFactory = PlacesModelFactory(searchType1, place, placesRepo)
-        val swimmingPoolFactory = PlacesModelFactory(searchType2, place, placesRepo)
-        val parksFactory = PlacesModelFactory(searchType3, place, placesRepo)
-        val museumsFactory = PlacesModelFactory(searchType4, place, placesRepo)
-        val golfClubsFactory = PlacesModelFactory(searchType5, place, placesRepo)
-        val movieTheatreFactory = PlacesModelFactory(searchType6, place, placesRepo)
-
-        //initialising view models
-        placesViewModel = ViewModelProvider(this, worshipFactory)[PlacesViewModel::class.java]
-        placesBreakModel = ViewModelProvider(this, restaurantsFactory)[PlacesViewModel::class.java]
-        placesGymModel = ViewModelProvider(this, gymFactory)[PlacesViewModel::class.java]
-        placesMidMorningModel = ViewModelProvider(this, swimmingPoolFactory)[PlacesViewModel::class.java]
-        placesAfternoonModel = ViewModelProvider(this, parksFactory)[PlacesViewModel::class.java]
-        placesEveningModel = ViewModelProvider(this, museumsFactory)[PlacesViewModel::class.java]
-        golfViewModel = ViewModelProvider(this, golfClubsFactory)[PlacesViewModel::class.java]
-        movieViewModel = ViewModelProvider(this, movieTheatreFactory)[PlacesViewModel::class.java]
-
-        placesGymModel.places.observe(this, Observer { placeDetails ->
-            when (placeDetails) {
-                is Resource.Success -> {
-                    placeDetails.let {
-                        val placeList = it.placesData!!.results
-                        for (i in placeList.indices){
-                            listGyms.add(placeList[i])
-                        }
-                        Toast.makeText(this, listGyms.size.toString(), Toast.LENGTH_LONG).show()
+        call.enqueue(object: Callback<TestResultsOne> {
+            override fun onResponse(call: Call<TestResultsOne>, response: Response<TestResultsOne>) {
+                if (response.isSuccessful){
+                    val list = response.body()!!.results
+                    for (element in list){
+                        listGyms.add(element)
                     }
-                }
-
-                is Resource.Failure -> {
-                    placeDetails.let {
-                        Toast.makeText(this
-                            , it.message, Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-                is Resource.Loading -> {
-                    Toast.makeText(this, "Loading please wait", Toast.LENGTH_SHORT)
-                        .show()
-
-                }
-
-            }
-
-
-        })
-
-        placesViewModel.places.observe(this, Observer { placesDetails ->
-            when (placesDetails) {
-                is Resource.Success -> {
-                    placesDetails.let {
-                        val worship = it.placesData!!.results
-                        for(i in worship.indices){
-                            listworship.add(worship[i])
-                        }
-                    }
-                }
-
-                is Resource.Failure -> {
-                    placesDetails.message.let {
-                        Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-                        Log.d("Message Error", "onCreateView:$it ")
-                    }
-                }
-
-                is Resource.Loading -> {
-                    Toast.makeText(this, "Loading...", Toast.LENGTH_SHORT).show()
-
+                    Toast.makeText(this@MainActivity, list.size.toString(), Toast.LENGTH_LONG).show()
                 }
             }
 
-        })
+            override fun onFailure(call: Call<TestResultsOne>, t: Throwable) {
+                Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_LONG).show()
 
+            }
+
+        })
+        call1.enqueue(object: Callback<TestResultsOne> {
+            override fun onResponse(call: Call<TestResultsOne>, response: Response<TestResultsOne>) {
+                if (response.isSuccessful){
+                    val list = response.body()!!.results
+                    for (element in list){
+                        listMuseums.add(element)
+                    }
+                    Toast.makeText(this@MainActivity, list.size.toString(), Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<TestResultsOne>, t: Throwable) {
+                Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_LONG).show()
+
+            }
+
+        })
+        call2.enqueue(object: Callback<TestResultsOne> {
+            override fun onResponse(call: Call<TestResultsOne>, response: Response<TestResultsOne>) {
+                if (response.isSuccessful){
+                    val list = response.body()!!.results
+                    for (element in list){
+                        listMovie.add(element)
+                    }
+                    Toast.makeText(this@MainActivity, list.size.toString(), Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<TestResultsOne>, t: Throwable) {
+                Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_LONG).show()
+
+            }
+
+        })
+        call3.enqueue(object: Callback<TestResultsOne> {
+            override fun onResponse(call: Call<TestResultsOne>, response: Response<TestResultsOne>) {
+                if (response.isSuccessful){
+                    val list = response.body()!!.results
+                    for (element in list){
+                        listSchools.add(element)
+                    }
+                    Toast.makeText(this@MainActivity, list.size.toString(), Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<TestResultsOne>, t: Throwable) {
+                Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_LONG).show()
+
+            }
+
+        })
+        call4.enqueue(object: Callback<TestResultsOne> {
+            override fun onResponse(call: Call<TestResultsOne>, response: Response<TestResultsOne>) {
+                if (response.isSuccessful){
+                    val list = response.body()!!.results
+                    for (element in list){
+                        listHospitals.add(element)
+                    }
+                    Toast.makeText(this@MainActivity, list.size.toString(), Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<TestResultsOne>, t: Throwable) {
+                Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_LONG).show()
+
+            }
+
+        })
+        call5.enqueue(object: Callback<TestResultsOne> {
+            override fun onResponse(call: Call<TestResultsOne>, response: Response<TestResultsOne>) {
+                if (response.isSuccessful){
+                    val list = response.body()!!.results
+                    for (element in list){
+                        listRestaurants.add(element)
+                    }
+                    Toast.makeText(this@MainActivity, list.size.toString(), Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<TestResultsOne>, t: Throwable) {
+                Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_LONG).show()
+
+            }
+
+        })
+        call6.enqueue(object: Callback<TestResultsOne> {
+            override fun onResponse(call: Call<TestResultsOne>, response: Response<TestResultsOne>) {
+                if (response.isSuccessful){
+                    val list = response.body()!!.results
+                    for (element in list){
+                        listGolf.add(element)
+                    }
+                    Toast.makeText(this@MainActivity, list.size.toString(), Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<TestResultsOne>, t: Throwable) {
+                Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_LONG).show()
+
+            }
+
+        })
+        call7.enqueue(object: Callback<TestResultsOne> {
+            override fun onResponse(call: Call<TestResultsOne>, response: Response<TestResultsOne>) {
+                if (response.isSuccessful){
+                    val list = response.body()!!.results
+                    for (element in list){
+                        listHotels.add(element)
+                    }
+                    Toast.makeText(this@MainActivity, list.size.toString(), Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<TestResultsOne>, t: Throwable) {
+                Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_LONG).show()
+
+            }
+
+        })
+        call8.enqueue(object: Callback<TestResultsOne> {
+            override fun onResponse(call: Call<TestResultsOne>, response: Response<TestResultsOne>) {
+                if (response.isSuccessful){
+                    val list = response.body()!!.results
+                    for (element in list){
+                        listWorship.add(element)
+                    }
+                    Toast.makeText(this@MainActivity, list.size.toString(), Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<TestResultsOne>, t: Throwable) {
+                Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_LONG).show()
+
+            }
+
+        })
 
 
     }
-    private fun isLocationEnabled(): Boolean{
+
+    private fun isLocationEnabled(): Boolean {
         val location = getSystemService(LOCATION_SERVICE) as LocationManager
-        return location.isProviderEnabled(LocationManager.GPS_PROVIDER) || location.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+        return location.isProviderEnabled(LocationManager.GPS_PROVIDER) || location.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER
+        )
     }
+
     private fun getUserCurrentLocation() {
         //checking if location permissions are enabled
-        if(isLocationEnabled()){
+        if (isLocationEnabled()) {
 
             //checking other permissions
-            if(ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-                locationProvider.lastLocation.addOnCompleteListener{
-                    val location = it.result
-                    if (location == null){
-                        Toast.makeText(this, "requesting for your current location", Toast.LENGTH_LONG).show()
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    ACCESS_FINE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(
+                    this,
+                    ACCESS_COARSE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                locationProvider.lastLocation.addOnCompleteListener {
+                    if (it.result == null) {
+                        Toast.makeText(
+                            this,
+                            "requesting for your current location",
+                            Toast.LENGTH_LONG
+                        ).show()
                         requestUsersCurrentLocation()
-                    }else{
-                        Toast.makeText(this, "lat: ->  ${location.latitude} long: ->  ${location.longitude}", Toast.LENGTH_LONG).show()
+                    } else {
+                        locationLatitude = it.result.latitude
+                        locationLongitude = it.result.longitude
+                        Toast.makeText(
+                            this,
+                            "lat: ->  ${locationLatitude} long: ->  ${locationLongitude}",
+                            Toast.LENGTH_LONG
+                        ).show()
 
                     }
                 }
-            }else{
+            } else {
                 //requesting user to turn on course and fine permissions
                 getPermissions()
             }
 
-        }else{
+        } else {
             val locationIntent = Intent(ACTION_LOCATION_SOURCE_SETTINGS)
             startActivity(locationIntent)
         }
@@ -191,11 +286,11 @@ private lateinit var locationProvider: FusedLocationProviderClient
 
     private fun getPermissions() {
         val permissions = arrayOf(ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION)
-        ActivityCompat.requestPermissions(this, permissions,44 )
+        ActivityCompat.requestPermissions(this, permissions, 44)
     }
 
     private fun requestUsersCurrentLocation() {
-        val locationCallBack = object: LocationCallback(){
+        val locationCallBack = object : LocationCallback() {
             override fun onLocationResult(p0: LocationResult) {
                 val lastLocation = p0.lastLocation
                 val latitude = lastLocation!!.latitude
@@ -208,15 +303,19 @@ private lateinit var locationProvider: FusedLocationProviderClient
             }
         }
         val request = LocationRequest()
-        request.priority =PRIORITY_HIGH_ACCURACY
+        request.priority = PRIORITY_HIGH_ACCURACY
         request.interval = 5
         request.fastestInterval = 0
         request.numUpdates = 1
 
-        if(ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED){
+        if (ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED
+            && ActivityCompat.checkSelfPermission(
+                this,
+                ACCESS_COARSE_LOCATION
+            ) == PERMISSION_GRANTED
+        ) {
             locationProvider.requestLocationUpdates(request, locationCallBack, Looper.myLooper())
-        }else{
+        } else {
             getPermissions()
         }
 
