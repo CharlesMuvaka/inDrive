@@ -13,7 +13,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.incode.R
 import com.example.incode.databinding.FragmentSplashBinding
 
-class SplashFragment : Fragment(), View.OnClickListener {
+class SplashFragment : Fragment(){
     private lateinit var bind: FragmentSplashBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,9 +22,6 @@ class SplashFragment : Fragment(), View.OnClickListener {
         //setting the status bar color
         val window = requireActivity().window
         window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.white)
-
-
-
     }
 
     override fun onCreateView(
@@ -37,27 +34,10 @@ class SplashFragment : Fragment(), View.OnClickListener {
         bind.root.startAnimation(
             AnimationUtils.loadAnimation(requireContext(), R.anim.enter_anim)
         )
-        val action = SplashFragmentDirections.actionSplashFragmentToDrawerFragment()
-        Handler(Looper.getMainLooper()).postDelayed({
-            NavHostFragment.findNavController(this).navigate(action)
-        }, 5000)
-
-        //setting the click listeners
-        bind.buttonSkip.setOnClickListener(this::onClick)
-        bind.buttonNext.setOnClickListener(this::onClick)
 
         return bind.root
     }
 
-    override fun onClick(p0: View?) {
-        if (p0 == bind.buttonSkip){
-            val action = SplashFragmentDirections.actionSplashFragmentToDrawerFragment()
-            NavHostFragment.findNavController(this).navigate(action)
-        }
 
-        if (p0 == bind.buttonNext){
-            val action = SplashFragmentDirections.actionSplashFragmentToDrawerFragment()
-            NavHostFragment.findNavController(this).navigate(action)
-        }
-    }
+
 }

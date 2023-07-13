@@ -9,7 +9,7 @@ import com.example.incode.R
 import com.example.incode.databinding.FragmentDriveThereBinding
 import com.example.incode.models.PlaceResult
 
-class DriveThereFragment : Fragment() {
+class DriveThereFragment : Fragment(), View.OnClickListener {
     private lateinit var bind:FragmentDriveThereBinding
     private var place: PlaceResult? = null
 
@@ -26,6 +26,9 @@ class DriveThereFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         bind = FragmentDriveThereBinding.inflate(inflater)
+
+        bind.wallet.setOnClickListener(this::onClick)
+        bind.back.setOnClickListener(this::onClick)
         return bind.root
     }
 
@@ -37,5 +40,18 @@ class DriveThereFragment : Fragment() {
                     putSerializable("place", param1)
                 }
             }
+    }
+
+    override fun onClick(v: View?) {
+        if(v == bind.wallet){
+            val intent = requireContext().packageManager.getLaunchIntentForPackage("com.android.stk")
+            if (intent != null){
+                requireContext().startActivity(intent)
+            }
+        }
+
+        if(v == bind.back){
+            requireActivity().finish()
+        }
     }
 }

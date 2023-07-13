@@ -12,7 +12,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.incode.R
 import com.example.incode.databinding.FragmentSplash2Binding
 
-class SplashFragment2: Fragment(), View.OnClickListener {
+class SplashFragment2: Fragment() {
     private lateinit var bind: FragmentSplash2Binding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -21,29 +21,16 @@ class SplashFragment2: Fragment(), View.OnClickListener {
         bind.root.startAnimation(
             AnimationUtils.loadAnimation(requireContext(), R.anim.enter_anim)
         )
-        val action = SplashFragment2Directions.actionSplashFragment2ToSplashFragment()
+        val action = SplashFragment2Directions.actionSplashFragment22ToSplashFragment3()
         Handler(Looper.getMainLooper()).postDelayed({
             NavHostFragment.findNavController(this).navigate(action)
-        }, 5000)
+        }, 2500)
 
-
-        //setting the click listeners
-        bind.buttonNext.setOnClickListener(this::onClick)
-        bind.buttonSkip.setOnClickListener(this::onClick)
 
         return bind.root
     }
 
-    override fun onClick(p0: View?) {
-        if (p0 == bind.buttonNext){
-            val action = SplashFragment2Directions.actionSplashFragment2ToSplashFragment()
-            NavHostFragment.findNavController(this).navigate(action)
-        }
-        if (p0 == bind.buttonSkip){
-            val action = SplashFragment2Directions.actionSplashFragment2ToDrawerFragment()
-            NavHostFragment.findNavController(this).navigate(action)
 
-        }
-    }
+
 
 }

@@ -1,81 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.cardview.widget.CardView
+    tools:context=".fragments.DriveThereFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.DriveThereFragment">
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    android:layout_margin="16dp"
+    android:backgroundTint="@color/mainColor">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/design"
+        android:layout_margin="4dp"
+        android:backgroundTint="@color/white">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Drive to"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/mainColor"
-        app:layout_constraintBottom_toTopOf="@id/driver"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-    <TextView
-        android:id="@+id/driver"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Driver:"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@id/car"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-    <TextView
-        android:id="@+id/car"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Car:"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@id/pay"
-        app:layout_constraintTop_toBottomOf="@id/driver"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-    <TextView
-        android:id="@+id/pay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pay using"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/car"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-    <ImageView
-        android:id="@+id/wallet"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/download"
-        app:layout_constraintTop_toBottomOf="@id/pay"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/account"/>
-    <ImageView
-        android:id="@+id/account"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/download"
-        app:layout_constraintTop_toBottomOf="@id/pay"
-        app:layout_constraintStart_toEndOf="@id/wallet"
-        app:layout_constraintEnd_toStartOf="@id/paypal"/>
-    <ImageView
-        android:id="@+id/paypal"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/download"
-        app:layout_constraintTop_toBottomOf="@id/pay"
-        app:layout_constraintStart_toEndOf="@id/account"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/driver"
+            app:layout_constraintStart_toStartOf="parent"
+            />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Drive to Ole Sereni"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:textColor="@color/mainColor"
+            app:layout_constraintBottom_toTopOf="@id/driver"
+            app:layout_constraintTop_toTopOf="@id/back"
+            app:layout_constraintStart_toEndOf="@id/back"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/driver"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Driver: Charles Muvaka Kata"
+            android:layout_margin="8dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/car"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/car"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Car: BMW KCD432h"
+            android:textSize="20sp"
+            android:layout_margin="8dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/driver"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Driver phone: 0768761610"
+            android:textSize="20sp"
+            android:layout_margin="8dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/car"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Driver location: Nairobi"
+            android:textSize="20sp"
+            android:layout_margin="8dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/location"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click to pay using"
+            android:textSize="23sp"
+            android:layout_margin="8dp"
+            android:textStyle="bold"
+            android:textColor="@color/mainColor"
+            app:layout_constraintTop_toBottomOf="@id/phone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/wallet"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/wallet"
+            android:scaleType="fitXY"
+            android:background="@drawable/design"
+            app:shapeAppearanceOverlay="@style/circle"
+            app:layout_constraintTop_toBottomOf="@id/pay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/account"/>
+        <TextView
+            android:id="@+id/walletText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wallet"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/wallet"
+            app:layout_constraintStart_toStartOf="@id/wallet"
+            app:layout_constraintEnd_toEndOf="@id/wallet"/>
+
+        <ImageView
+            android:id="@+id/account"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/stk"
+            app:layout_constraintTop_toBottomOf="@id/pay"
+            app:layout_constraintStart_toEndOf="@id/wallet"
+            app:layout_constraintEnd_toStartOf="@id/paypal"/>
+        <TextView
+            android:id="@+id/accountText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="STK"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/account"
+            app:layout_constraintStart_toStartOf="@id/account"
+            app:layout_constraintEnd_toEndOf="@id/account"/>
+
+        <ImageView
+            android:id="@+id/paypal"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/debit"
+            app:layout_constraintTop_toBottomOf="@id/pay"
+            app:layout_constraintStart_toEndOf="@id/account"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/paypalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Debit Card"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/paypal"
+            app:layout_constraintStart_toStartOf="@id/paypal"
+            app:layout_constraintEnd_toEndOf="@id/paypal"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/walletText"
+            app:shapeAppearanceOverlay="@style/circle"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/driver" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

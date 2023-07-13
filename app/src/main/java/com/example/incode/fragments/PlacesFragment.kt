@@ -34,6 +34,11 @@ class PlacesFragment: Fragment(), View.OnClickListener {
         //setting click listeners
         bind.gym.setOnClickListener(this::onClick)
         bind.movie.setOnClickListener(this::onClick)
+        bind.submit.setOnClickListener(this::onClick)
+        bind.worship.setOnClickListener(this::onClick)
+        bind.restaurants.setOnClickListener(this::onClick)
+        bind.schools.setOnClickListener(this::onClick)
+        bind.hospitals.setOnClickListener(this::onClick)
 
         return bind.root
     }
@@ -52,6 +57,58 @@ class PlacesFragment: Fragment(), View.OnClickListener {
         if(p0 == bind.movie){
             val adp = PlaceAdapter(requireContext())
             adp.list.submitList((activity as MainActivity).listMovie)
+
+            bind.rec.apply {
+                adapter = adp
+                layoutManager = LinearLayoutManager(requireContext())
+                setHasFixedSize(true)
+            }
+        }
+        if(p0 == bind.worship){
+            val adp = PlaceAdapter(requireContext())
+            adp.list.submitList((activity as MainActivity).listWorship)
+
+            bind.rec.apply {
+                adapter = adp
+                layoutManager = LinearLayoutManager(requireContext())
+                setHasFixedSize(true)
+            }
+
+
+        }
+        if(p0 == bind.restaurants){
+            val adp = PlaceAdapter(requireContext())
+            adp.list.submitList((activity as MainActivity).listRestaurants)
+
+            bind.rec.apply {
+                adapter = adp
+                layoutManager = LinearLayoutManager(requireContext())
+                setHasFixedSize(true)
+            }
+        }
+        if(p0 == bind.hospitals){
+            val adp = PlaceAdapter(requireContext())
+            adp.list.submitList((activity as MainActivity).listHospitals)
+
+            bind.rec.apply {
+                adapter = adp
+                layoutManager = LinearLayoutManager(requireContext())
+                setHasFixedSize(true)
+            }
+        }
+        if(p0 == bind.schools){
+            val adp = PlaceAdapter(requireContext())
+            adp.list.submitList((activity as MainActivity).listSchools)
+
+            bind.rec.apply {
+                adapter = adp
+                layoutManager = LinearLayoutManager(requireContext())
+                setHasFixedSize(true)
+            }
+        }
+        if(p0 == bind.submit){
+            val adp = PlaceAdapter(requireContext())
+            adp.list.submitList((activity as MainActivity).listMuseums)
 
             bind.rec.apply {
                 adapter = adp

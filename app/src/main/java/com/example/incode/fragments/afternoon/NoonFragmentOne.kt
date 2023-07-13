@@ -29,7 +29,7 @@ class NoonFragmentOne : Fragment() {
         val place = (activity as MainActivity).listGyms[19]
 
         bind.evening.text = "Hey, its lunch, join us"
-        bind.placeName.text = "${place.name.split(" ")[0]} ${place.name.split(" ")[1]} Restaurant"
+        //bind.placeName.text = "${place.name.split(" ")[0]} ${place.name.split(" ")[1]} Restaurant"
         //Picasso.get().load(place.photos[0].photo_reference).into(bind.placeImage)
 
         bind.root.startAnimation(

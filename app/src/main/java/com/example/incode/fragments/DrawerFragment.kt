@@ -34,10 +34,8 @@ class DrawerFragment: Fragment(), View.OnClickListener {
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         bind = FragmentDrawerBinding.inflate(inflater)
+        setAnimations()
 
-        bind.root.startAnimation(
-            AnimationUtils.loadAnimation(requireContext(), R.anim.enter_anim)
-        )
         //getting the users location from the main activity
         //val latitude = (activity as MainActivity).locationLatitude
         //val longitude = (activity as MainActivity).locationLongitude
@@ -77,5 +75,17 @@ class DrawerFragment: Fragment(), View.OnClickListener {
         if (p0 == bind.image){
             bind.drawerNav.openDrawer(GravityCompat.START)
         }
+    }
+
+    private fun setAnimations(){
+        bind.welcome.startAnimation(
+            AnimationUtils.loadAnimation(requireContext(), R.anim.zoom_in)
+        )
+        bind.slogan.startAnimation(
+            AnimationUtils.loadAnimation(requireContext(), R.anim.zoom_in)
+        )
+        bind.fragmentContainerView2.startAnimation(
+            AnimationUtils.loadAnimation(requireContext(), R.anim.zoom_in)
+        )
     }
 }

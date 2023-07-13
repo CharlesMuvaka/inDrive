@@ -3,43 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_nav"
-    app:startDestination="@id/splashPagerFragment">
+    app:startDestination="@id/splashMainFragment">
 
-    <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.example.incode.fragments.splash.SplashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
-        <action
-            android:id="@+id/action_splashFragment_to_drawerFragment"
-            app:destination="@id/drawerFragment" />
-    </fragment>
     <fragment
         android:id="@+id/drawerFragment"
         android:name="com.example.incode.fragments.DrawerFragment"
         android:label="fragment_drawer"
         tools:layout="@layout/fragment_drawer" />
     <fragment
-        android:id="@+id/splashPagerFragment"
-        android:name="com.example.incode.fragments.splash.SplashPagerFragment"
-        android:label="SplashPagerFragment" >
+        android:id="@+id/splashMainFragment"
+        android:name="com.example.incode.fragments.splash.SplashMainFragment"
+        android:label="SplashMainFragment" >
         <action
-            android:id="@+id/action_splashPagerFragment_to_splashFragment2"
-            app:destination="@id/splashFragment2" />
-        <action
-            android:id="@+id/action_splashPagerFragment_to_drawerFragment"
-            app:destination="@id/drawerFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/splashFragment2"
-        android:name="com.example.incode.fragments.splash.SplashFragment2"
-        android:label="fragment_splash2"
-        tools:layout="@layout/fragment_splash2" >
-        <action
-            android:id="@+id/action_splashFragment2_to_splashFragment"
-            app:destination="@id/splashFragment" />
-        <action
-            android:id="@+id/action_splashFragment2_to_drawerFragment"
+            android:id="@+id/action_splashMainFragment_to_drawerFragment"
             app:destination="@id/drawerFragment" />
     </fragment>
 </navigation>
