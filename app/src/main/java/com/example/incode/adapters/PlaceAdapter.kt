@@ -11,8 +11,8 @@ import com.example.incode.R
 import com.example.incode.SecondActivity
 import com.example.incode.databinding.FragmentBreakOneBinding
 import com.example.incode.models.PlaceResult
-import com.example.incode.uitils.Constants
 import com.squareup.picasso.Picasso
+import com.example.incode.uitils.Constants
 
 class PlaceAdapter(private val cont: Context) : RecyclerView.Adapter<PlaceAdapter.MyHolder>(){
     inner class MyHolder(private val bind: FragmentBreakOneBinding): RecyclerView.ViewHolder(bind.root){
@@ -64,7 +64,7 @@ class PlaceAdapter(private val cont: Context) : RecyclerView.Adapter<PlaceAdapte
         )
     )
 
-    override fun getItemCount() = 10
+    override fun getItemCount() = list.currentList.size
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         val place = list.currentList[position]
         holder.setData(place)
