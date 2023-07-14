@@ -14,10 +14,8 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.example.incode.api.RetrofitClient
 import com.example.incode.datab.Drivers
-import com.example.incode.datab.Places
 import com.example.incode.databinding.ActivityMainBinding
 import com.example.incode.models.Driver
-import com.example.incode.models.Place
 import com.example.incode.models.PlaceResult
 import com.example.incode.models.TestResultsOne
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -38,7 +36,6 @@ class MainActivity : AppCompatActivity() {
     var locationLongitude: Double? = null
 
 
-    var places = ArrayList<Place>()
     var drivers = ArrayList<Driver>()
     var listGyms = ArrayList<PlaceResult>()
     var listMuseums = ArrayList<PlaceResult>()
@@ -62,7 +59,6 @@ class MainActivity : AppCompatActivity() {
         //getting the users current location and latitude details
         //getUserCurrentLocation()
 
-        places = Places().places
         drivers = Drivers().drivers
         val client = RetrofitClient.apiInstance
 
