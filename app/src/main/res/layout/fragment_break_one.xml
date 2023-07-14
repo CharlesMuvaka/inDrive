@@ -21,7 +21,6 @@
             android:layout_margin="8dp"
             android:fontFamily="@font/poppins"
             android:textColor="@color/black"
-            android:textSize="23sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,12 +28,14 @@
             app:layout_constraintTop_toBottomOf="@id/placeImage"/>
 
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/placeImage"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="fitXY"
+            android:layout_margin="4dp"
             android:src="@drawable/gym"
+            app:shapeAppearanceOverlay="@style/circle1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/evening" />
@@ -46,7 +47,6 @@
             android:layout_margin="10dp"
             android:text="Ole Sereni"
             android:textColor="@color/mainColor"
-            android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +109,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="textEnd"
-            android:textSize="20sp"
             android:textStyle="bold"
             android:text="Opened: Yes"
             app:layout_constraintBottom_toBottomOf="@id/placeName"
