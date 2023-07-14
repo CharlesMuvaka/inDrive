@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.incode.databinding.FragmentPlaceBinding
-import com.example.incode.models.Place
 import com.example.incode.models.PlaceResult
 import com.example.incode.uitils.Constants
 import com.squareup.picasso.Picasso
