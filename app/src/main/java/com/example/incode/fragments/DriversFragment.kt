@@ -23,7 +23,7 @@ class DriversFragment: Fragment() {
         adp = DriversAdapter()
         adp.driversList.submitList(drivers)
 
-        val driver = drivers[0]
+        val driver = drivers[drivers.size - 1]
 
         bind.jobsRecView.apply {
             adapter = adp
@@ -33,7 +33,8 @@ class DriversFragment: Fragment() {
 
         //binding the layout with data
         bind.activityName.text = driver.name
-        bind.activityPart.text = driver.car!!.numberPlate
+        bind.activity.text = "You can reach ${driver.name!!.split(" ")[0]} on ${driver.phone} who drives a ${driver.car!!.name} identified with ${driver.car!!.numberPlate}"
+        bind.activityPart.text = "car: ${driver.car!!.name} ${driver.car!!.numberPlate}"
 
         return bind.root
     }
