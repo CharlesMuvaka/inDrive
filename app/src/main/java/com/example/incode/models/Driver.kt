@@ -3,7 +3,7 @@ package com.example.incode.models
 class Driver {
     var name: String? = null
     var phone: String? = null
-    var email: String? = null
+    var distance: String? = null
     var location: String? = null
     var car: Car? = null
 
