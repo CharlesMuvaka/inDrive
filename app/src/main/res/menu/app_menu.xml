@@ -7,11 +7,11 @@
             android:title="Home"
             android:icon="@drawable/ic_home"/>
         <item
-            android:id="@+id/rides"
+            android:id="@+id/bookRideFragment"
             android:title="Book a cab"
             android:icon="@drawable/ic_cab"/>
         <item
-            android:id="@+id/ridesFragment"
+            android:id="@+id/mainFragment"
             android:title="Previous Rides"
             android:icon="@drawable/ic_drive"/>
         <item
@@ -25,7 +25,7 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/wallet"
-                    android:title="Wallet"
+                    android:title="Wallet  $1000"
                     android:icon="@drawable/ic_wallet"/>
              <item
                     android:id="@+id/loginFragment"
