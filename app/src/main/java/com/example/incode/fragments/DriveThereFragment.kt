@@ -29,10 +29,10 @@ class DriveThereFragment : Fragment(), View.OnClickListener {
         bind = FragmentDriveThereBinding.inflate(inflater)
         var driver = Drivers().drivers[0]
         var placeName = place!!.name.split(" ")
-        bind.title.text = "Drive to ${placeName[0]}"
-        bind.driver.text = driver.name
-        bind.car.text = "${driver.car!!.name} ${driver.car!!.numberPlate}"
-        bind.phone.text = driver.phone
+        bind.title.text = "Drive to ${place!!.name}"
+        bind.driver.text = "Driver name: ${driver.name}"
+        bind.car.text = "Car: ${driver.car!!.name} ${driver.car!!.numberPlate}"
+        bind.phone.text = "Contacts: ${driver.phone}"
 
 
         bind.account.setOnClickListener(this::onClick)
