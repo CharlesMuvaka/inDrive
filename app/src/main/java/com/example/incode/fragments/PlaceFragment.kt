@@ -35,11 +35,17 @@ class PlaceFragment: Fragment(), View.OnClickListener {
             Picasso.get().load(url1).into(bind.placeImage)
         }
 
-        bind.reference.text = "${place!!.types[0]}${place!!.types[1]}${place!!.types.size} "
-        bind.status.text = "Opened now -> ${place!!.opening_hours.open_now.toString()}"
-        bind.rating.text = "Rated at: ${place!!.rating.toString()}/5"
-        bind.people.text = "likes: ${place!!.user_ratings_total}"
+        var category = ""
+        for (i in place!!.types.indices){
+            category += "${i +1}.${place!!.types[i]} \n"
+        }
 
+        bind.referenceAns.text = "$category"
+        bind.statusANs.text = " ${place!!.opening_hours.open_now.toString()}"
+        bind.ratingAns.text = " ${place!!.rating.toString()}/5"
+        bind.people.text = "likes: ${place!!.user_ratings_total}"
+        bind.addressAns.text = "${place!!.geometry.location.lat}"
+        bind.addressAnsLong.text = "${place!!.geometry.location.lng}"
         Picasso.get().load(place!!.icon).into(bind.image)
 
         bind.gym.setOnClickListener(this::onClick)
@@ -65,7 +71,7 @@ class PlaceFragment: Fragment(), View.OnClickListener {
         if(v == bind.gym){
             bind.cont.alpha = 0.1f
             bind.cont1.alpha = 0.1f
-            val fragment = DriveThereFragment()
+            val fragment = DriveThereFragment.newInstance(place!!)
             replaceFragment(fragment)
             //bind.transformationOverview.startTransform()
         }
