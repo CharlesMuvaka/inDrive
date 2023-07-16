@@ -28,7 +28,20 @@ class DriversAdapter: RecyclerView.Adapter<DriversAdapter.MyHolder>() {
 
 
     inner class MyHolder(private val bind: ViewBinding): RecyclerView.ViewHolder(bind.root){
+            fun setData(driver: Driver){
+                if(layoutType == 0){
+                    val mBind = (bind as PlaceRecBinding)
+                    mBind.name.text = driver.name
+                    mBind.description.text = "You can reach ${driver.name!!.split(" ")[0]} on ${driver.phone} who drives a ${driver.car!!.name} identified with ${driver.car!!.numberPlate}"
+                    mBind.distance.text = driver.distance
+                    mBind.address.text = driver.location
+                }else{
+                    val mBind = (bind as RightPlaceRecBinding)
+                    mBind.name.text = driver.name
+                    mBind.description.text = "You can reach ${driver.name!!.split(" ")[0]} on ${driver.phone} who drives a ${driver.car!!.name} identified with ${driver.car!!.numberPlate}"
 
+                }
+            }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = if(layoutType != 0){
@@ -45,5 +58,6 @@ class DriversAdapter: RecyclerView.Adapter<DriversAdapter.MyHolder>() {
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         layoutType = position % 2
+        holder.setData(driversList.currentList[position])
     }
 }
