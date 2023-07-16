@@ -81,106 +81,234 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cont1">
-
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/placeImage"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="fitXY"
             android:src="@drawable/gym"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            app:shapeAppearanceOverlay="@style/circle1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
             android:id="@+id/placeName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:text="Ole Sereni"
             android:textColor="@color/mainColor"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/status"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/placeImage" />
-
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Open now: true"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginStart="4dp"
-            app:layout_constraintEnd_toStartOf="@id/animation_view"
-            app:layout_constraintBottom_toTopOf="@id/address"
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="4dp"
+            android:layout_margin="4dp"
+            app:cardElevation="4dp"
+            android:backgroundTint="@color/mainColor"
+            app:layout_constraintBottom_toTopOf="@id/people"
+            app:layout_constraintTop_toBottomOf="@id/placeName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/placeName" />
+            android:id="@+id/card1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/design"
+                android:layout_margin="1dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/image1"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/cabdriver"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
 
-        <TextView
-            android:id="@+id/address"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Address:"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginStart="4dp"
-            app:layout_constraintEnd_toStartOf="@id/animation_view"
-            app:layout_constraintBottom_toTopOf="@id/rating"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/status" />
+                    />
 
-        <TextView
-            android:id="@+id/rating"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Rated at: "
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginStart="4dp"
-            app:layout_constraintEnd_toStartOf="@id/animation_view"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/address" />
 
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Open now:"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="4dp"
+                    app:layout_constraintEnd_toStartOf="@id/statusANs"
+                    app:layout_constraintBottom_toTopOf="@id/address"
+                    app:layout_constraintStart_toEndOf="@id/image1"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/statusANs"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="true"
+                    android:textSize="20sp"
+                    android:layout_marginStart="4dp"
+                    app:layout_constraintStart_toEndOf="@id/status"
+                    app:layout_constraintBottom_toBottomOf="@id/status"
+                    app:layout_constraintTop_toTopOf="@id/status"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Latitude:"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="4dp"
+                    app:layout_constraintEnd_toStartOf="@id/addressAns"
+                    app:layout_constraintBottom_toTopOf="@id/addressLong"
+                    app:layout_constraintStart_toEndOf="@id/image1"
+                    app:layout_constraintTop_toBottomOf="@id/status" />
+                <TextView
+                    android:id="@+id/addressLong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Longitude:"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="2dp"
+                    app:layout_constraintEnd_toStartOf="@id/addressAnsLong"
+                    app:layout_constraintBottom_toTopOf="@id/rating"
+                    app:layout_constraintStart_toEndOf="@id/image1"
+                    app:layout_constraintTop_toBottomOf="@id/address" />
+                <TextView
+                    android:id="@+id/addressAns"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Address:"
+                    android:textSize="20sp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/address"
+                    app:layout_constraintStart_toEndOf="@id/address"
+                    app:layout_constraintBottom_toBottomOf="@id/address" />
+                <TextView
+                    android:id="@+id/addressAnsLong"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Address:"
+                    android:textSize="20sp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/addressLong"
+                    app:layout_constraintStart_toEndOf="@id/addressLong"
+                    app:layout_constraintBottom_toBottomOf="@id/addressLong" />
+
+                <TextView
+                    android:id="@+id/rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rated at: "
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="2dp"
+                    app:layout_constraintStart_toEndOf="@id/image1"
+                    app:layout_constraintTop_toBottomOf="@id/addressLong" />
+                <TextView
+                    android:id="@+id/ratingAns"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Rated at: "
+                    android:textSize="20sp"
+                    android:layout_marginStart="4dp"
+                    app:layout_constraintStart_toEndOf="@id/rating"
+                    app:layout_constraintTop_toTopOf="@id/rating"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/rating"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
         <TextView
             android:id="@+id/people"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_thumb_up"
             android:drawablePadding="2dp"
             android:text="Rated at: "
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginStart="4dp"
-            app:layout_constraintEnd_toStartOf="@id/animation_view"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rating" />
+            android:textColor="@color/mainColor"
+            android:textAlignment="textEnd"
+            android:layout_marginEnd="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card1" />
 
-        <TextView
-            android:id="@+id/reference"
-            android:layout_width="0dp"
+        <androidx.cardview.widget.CardView
+            android:id="@id/card2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawablePadding="2dp"
-            android:text="Reference "
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginStart="4dp"
-            app:layout_constraintEnd_toStartOf="@id/animation_view"
+            app:layout_constraintBottom_toTopOf="@id/gym"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/people" />
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animation_view"
-            android:layout_width="200dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@id/reference"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/status"
-            app:shapeAppearanceOverlay="@style/circle"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/driver" />
+            app:cardCornerRadius="4dp"
+            android:layout_margin="4dp"
+            app:cardElevation="4dp"
+            android:backgroundTint="@color/mainColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/people">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_margin="1dp"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/design"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/reference"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="2dp"
+                    android:text="Categorised as"
+                    android:textColor="@color/mainColor"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="4dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/animation_view"
+                    app:layout_constraintStart_toStartOf="parent"
 
+                     />
+                <TextView
+                    android:id="@+id/referenceAns"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="2dp"
+                    android:text="Reference "
+                    android:textSize="19sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="4dp"
+                    app:layout_constraintEnd_toStartOf="@id/animation_view"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/reference" />
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animation_view"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/reference"
+                    app:shapeAppearanceOverlay="@style/circle"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/driver" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/gym"
@@ -191,13 +319,14 @@
             android:backgroundTint="@color/mainColor"
             android:padding="8dp"
             android:text="Drive there"
+            android:layout_marginTop="4dp"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/reference" />
+            app:layout_constraintTop_toBottomOf="@id/card2" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

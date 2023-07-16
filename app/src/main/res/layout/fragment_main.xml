@@ -11,7 +11,7 @@
             android:id="@+id/bored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Bored? Check out places we have suggested for you to visit"
+            android:text="Upcoming Rides"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -24,91 +24,38 @@
             app:layout_constraintEnd_toEndOf="parent"
             />
 
-    <ScrollView
-        android:id="@+id/scroll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/bored"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/upComing"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/bored"
+            app:layout_constraintStart_toStartOf="parent"/>
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/cont1"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:defaultNavHost="true"
-                app:navGraph="@navigation/worship_graph"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/previous"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Previous Rides"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:textAlignment="textStart"
+            app:layout_constraintTop_toBottomOf="@id/upComing"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/cont2"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:defaultNavHost="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cont1"
-                app:navGraph="@navigation/breakfast_graph" />
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/cont3"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:defaultNavHost="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cont2"
-                app:navGraph="@navigation/mid_morning_graph" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/previousRec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/previous"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/cont4"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:defaultNavHost="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cont3"
-                app:navGraph="@navigation/lunch_graph" />
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/cont5"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:defaultNavHost="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cont4"
-                app:navGraph="@navigation/afternoon_graph" />
-
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/cont6"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:defaultNavHost="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cont5"
-                app:navGraph="@navigation/evening_graph" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
 
 
 

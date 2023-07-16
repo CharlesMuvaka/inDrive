@@ -11,7 +11,6 @@
         android:layout_height="140dp"
         android:layout_width="match_parent"
         android:background="@drawable/design"
-        android:backgroundTint="@color/drive2"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="Don't be stranded,"
         android:textStyle="bold"
-        android:textColor="@color/drive"
+        android:textColor="@color/mainColor"
         android:textSize="20sp"
         android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"
@@ -47,9 +46,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:backgroundTint="@color/white"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:backgroundTint="@color/mainColor"
         app:layout_constraintTop_toBottomOf="@id/header"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/header">
@@ -58,8 +57,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/design"
-            android:layout_margin="4dp"
-            android:backgroundTint="@color/drive2">
+            android:layout_margin="1dp"
+            android:backgroundTint="@color/white"
+            >
 
             <TextView
                 android:layout_marginTop="4dp"
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:text="Activity Name"
                 android:textSize="20sp"
-                android:textColor="@color/drive"
+                android:textColor="@color/mainColor"
                 android:textAlignment="textStart"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toRightOf="@id/animation_view"
@@ -81,7 +81,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Activity Name"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="@color/black"
                 app:layout_constraintLeft_toRightOf="@id/animation_view"
                 app:layout_constraintRight_toRightOf="parent"
@@ -91,14 +91,14 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animation_view"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 app:layout_constraintBottom_toBottomOf="@+id/activity_part"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
-                app:lottie_rawRes="@raw/indrive" />
+                app:lottie_rawRes="@raw/driver" />
 
             <TextView
                 android:layout_marginBottom="4dp"
@@ -106,8 +106,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textSize="19sp"
-                android:textColor="@color/drive"
+                android:textSize="16sp"
+                android:textColor="@color/mainColor"
                 android:text="Activity Name"
                 android:layout_marginEnd="16dp"
                 android:textAlignment="textEnd"
@@ -127,7 +127,6 @@
         android:layout_height="0dp"
         android:layout_width="match_parent"
         android:background="@drawable/design"
-        android:backgroundTint="@color/drive3"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginTop="6dp"
@@ -140,7 +139,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Our Drivers"
-        android:textColor="@color/drive"
+        android:textColor="@color/mainColor"
         android:textStyle="bold"
         android:textSize="20sp"
         android:layout_margin="12dp"
