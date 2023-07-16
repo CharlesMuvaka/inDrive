@@ -23,7 +23,7 @@ class PlacesFragment: Fragment(), View.OnClickListener {
         bind = FragmentPlacesBinding.inflate(inflater)
 
         val adp = PlaceAdapter(requireContext())
-        adp.list.submitList((activity as MainActivity).listGolf)
+        adp.list.submitList((activity as MainActivity).listShopping)
 
 
         bind.rec.apply{
@@ -39,6 +39,7 @@ class PlacesFragment: Fragment(), View.OnClickListener {
         bind.restaurants.setOnClickListener(this::onClick)
         bind.schools.setOnClickListener(this::onClick)
         bind.hospitals.setOnClickListener(this::onClick)
+        bind.shopping.setOnClickListener(this::onClick)
 
         return bind.root
     }
@@ -47,6 +48,16 @@ class PlacesFragment: Fragment(), View.OnClickListener {
         if(p0 == bind.gym){
             val adp = PlaceAdapter(requireContext())
             adp.list.submitList((activity as MainActivity).listGyms)
+
+            bind.rec.apply {
+                adapter = adp
+                layoutManager = LinearLayoutManager(requireContext())
+                setHasFixedSize(true)
+            }
+        }
+        if(p0 == bind.shopping){
+            val adp = PlaceAdapter(requireContext())
+            adp.list.submitList((activity as MainActivity).listShopping)
 
             bind.rec.apply {
                 adapter = adp
