@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
     var listSchools = ArrayList<PlaceResult>()
     var listHospitals = ArrayList<PlaceResult>()
     var listGolf = ArrayList<PlaceResult>()
+    var listShopping = ArrayList<PlaceResult>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         locationProvider = LocationServices.getFusedLocationProviderClient(this)
 
         //getting the users current location and latitude details
-        //getUserCurrentLocation()
+        getUserCurrentLocation()
 
         drivers = Drivers().drivers
         val client = RetrofitClient.apiInstance
@@ -71,7 +72,25 @@ class MainActivity : AppCompatActivity() {
         val call6 = client.getPlaces("golf clubs", "Nairobi")
         val call7 = client.getPlaces("hotels", "Nairobi")
         val call8 = client.getPlaces("worship", "Nairobi")
+        val call9 = client.getPlaces("supermarkets", "Nairobi")
 
+        call9.enqueue(object: Callback<TestResultsOne> {
+            override fun onResponse(call: Call<TestResultsOne>, response: Response<TestResultsOne>) {
+                if (response.isSuccessful){
+                    val list = response.body()!!.results
+                    for (element in list){
+                        listShopping.add(element)
+                    }
+                    Toast.makeText(this@MainActivity, list.size.toString(), Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<TestResultsOne>, t: Throwable) {
+                Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_LONG).show()
+
+            }
+
+        })
         call.enqueue(object: Callback<TestResultsOne> {
             override fun onResponse(call: Call<TestResultsOne>, response: Response<TestResultsOne>) {
                 if (response.isSuccessful){
